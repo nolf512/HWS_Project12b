@@ -13,10 +13,4 @@ class PersonCell: UICollectionViewCell {
     @IBOutlet var name: UILabel!
     
     
-    
-    
-    
-    
-    
-    
 }

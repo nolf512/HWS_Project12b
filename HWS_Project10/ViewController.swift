@@ -41,5 +41,28 @@ class ViewController: UICollectionViewController, UIImagePickerControllerDelegat
         present(picker, animated: true, completion: nil)
     }
     
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        //UIImageとして存在するかのチェック
+        guard let image = info[.editedImage] as? UIImage else { return }
+        
+        //画像にファイル名をつける
+        let imageName = UUID().uuidString
+        
+        let imagePath = getDocumentsDirectory().appendingPathComponent(imageName)
+        
+        //JPEG画像形式のDataオブジェクトに変換
+        if let jpegData = image.jpegData(compressionQuality: 0.8) {
+            try? jpegData.write(to: imagePath)
+        }
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
+    //ディレクトリの場所を取得
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
 }
 

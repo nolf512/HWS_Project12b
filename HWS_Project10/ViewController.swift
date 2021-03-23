@@ -7,16 +7,20 @@
 
 import UIKit
 
-class ViewController: UICollectionViewController {
+class ViewController: UICollectionViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    //UIImagePickerControllerDelegate: ユーザーが画像を選択したかキャンセルしたかを通知
     
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewPerson))
         
         
     }
+
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 10
@@ -30,5 +34,12 @@ class ViewController: UICollectionViewController {
     }
   
 
+    @objc func addNewPerson(){
+        let picker = UIImagePickerController()
+        picker.allowsEditing = true //画像の切り抜き
+        picker.delegate = self
+        present(picker, animated: true, completion: nil)
+    }
+    
 }
 

@@ -11,6 +11,8 @@ class ViewController: UICollectionViewController, UIImagePickerControllerDelegat
     
     //UIImagePickerControllerDelegate: ユーザーが画像を選択したかキャンセルしたかを通知
     
+    var people = [Person]()
+    
     
 
     override func viewDidLoad() {
@@ -55,6 +57,10 @@ class ViewController: UICollectionViewController, UIImagePickerControllerDelegat
         if let jpegData = image.jpegData(compressionQuality: 0.8) {
             try? jpegData.write(to: imagePath)
         }
+        
+        let person = Person(name: "unknown", image: imageName)
+        people.append(person)
+        collectionView.reloadData()
         
         dismiss(animated: true, completion: nil)
     }

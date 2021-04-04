@@ -8,7 +8,7 @@
 import UIKit
 
 //nameとimageのデータ保持するカスタムクラス
-class Person: NSObject {
+class Person: NSObject,Codable {
     
     var name: String
     var image: String
